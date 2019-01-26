@@ -5,16 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>VueApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="../VueJS-Udemy/vue.js"></script>
+    <script src="../vue.js"></script>
 </head>
 <body>
 
     <div id="app">
         <input type="text" v-on:input="changeTitle">
-        <p>
-            {{title}}
+        <p v-once>
+            {{ title }} - <a v-bind:href="link">Google</a>
         </p>
+        <p >
+            {{ sayHello() }}
+        </p>
+        <hr>
+        <p v-html="finishedLink"></p>
     </div>
 
 </body>
@@ -24,10 +28,16 @@
         el: '#app',
         data: {
             title: 'Hello World',
+            link: 'https://www.google.com',
+            finishedLink: '<a href="https://www.google.com">Google</a>'
         },
         methods: {
             changeTitle: function (event) {
                 this.title = event.target.value;
+            },
+            sayHello: function(){
+                this.title = 'Hello!'
+                return this.title;
             }
         }
     })
