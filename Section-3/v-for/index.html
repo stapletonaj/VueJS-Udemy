@@ -13,15 +13,20 @@
         <ul>
             <li v-for='(ingredient, i) in ingredients'>{{ ingredient }} ({{i}})</li>
         </ul>
-        <template v-for='(ingredient, i) in ingredients'>
+        <template v-for='(ingredient, i) in ingredients' v-bind:key='ingredient'>
             <h1>{{ ingredient }}</h1>
             <p>{{ i }}</p>
         </template>
+        <button v-on:click="ingredients.push('spices')">Add new</button>
         <hr>
         <ul>
             <li v-for='person in persons'>{{ person.name }}
                 <div v-for="(value, key, index) in person">{{ key }}:{{ value }} {{ index }}</div>
             </li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for='n in 10'>{{ n }}</li>
         </ul>
     </div>
     
