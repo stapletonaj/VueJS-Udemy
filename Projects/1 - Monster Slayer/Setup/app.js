@@ -15,15 +15,22 @@ new Vue ({
         attack: function() {
             this.yourHealth = this.yourHealth - Math.floor((Math.random() * 10))
             this.monsterHealth = this.monsterHealth - Math.floor(Math.random() * 10);
+            this.alertEnd();
         },
         specialAttack: function () {
             this.yourHealth = this.yourHealth - Math.floor((Math.random() * 12))
             this.monsterHealth = this.monsterHealth - Math.floor(Math.random() * 15);
         },
+            
         heal: function () {
             this.yourHealth = this.yourHealth - Math.floor(Math.random() * 5);
-            this.yourHealth = this.yourHealth + Math.floor((Math.random() * 5))
+            this.yourHealth = this.yourHealth + Math.floor((Math.random() * 5));
         },
+        alertEnd: function() {
+            if(this.yourHealth < 1){
+                alert('Game over!');
+            } else return;
+        }
     },
     computed: {
         calcWidthYou: function() {
@@ -35,6 +42,6 @@ new Vue ({
             return {
                 width: this.monsterHealth + '%'
             }
-        }
+        },
     },
 })
