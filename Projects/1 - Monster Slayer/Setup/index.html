@@ -39,11 +39,13 @@
             <button id="give-up" v-on:click='resetGame'>GIVE UP</button>
         </div>
     </section>
-    <section class="row log" v-if='gameActive'>
+    <section class="row log" v-if='hitRecord.length > 0'>
         <div class="small-12 columns">
             <ul>
-                <li>
-
+                <li 
+                v-for='hit in hitRecord' 
+                :class='{"player-turn": hit.isPlayer, "monster-turn": !hit.isPlayer}'>
+                    {{ hit.text }}
                 </li>
             </ul>
         </div>

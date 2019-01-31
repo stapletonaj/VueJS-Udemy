@@ -14,27 +14,57 @@ new Vue ({
         },
         attack: function() {
             
-            this.yourHealth -= this.calculateDamage(3, 10);
-             
+            this.monsterAttack();
+            
             if(this.checkWin()){
                 return
             }
             
-            this.monsterHealth -= this.calculateDamage(3, 10);
-            
+            let damage = this.calculateDamage(3, 10);
+            this.monsterHealth -= damage;
+            this.hitRecord.unshift({
+                isPlayer: true,
+                text: 'Player hits Monster for ' + damage
+            })
+
             if(this.checkWin()){
                 return
             }
             
         },
         specialAttack: function () {
-            this.yourHealth = this.yourHealth - Math.floor((Math.random() * 12))
-            this.monsterHealth = this.monsterHealth - Math.floor(Math.random() * 15);
+            
+            this.monsterAttack();
+             
+            if(this.checkWin()){
+                return
+            }
+            
+            let damage = this.calculateDamage(10, 20);
+            this.monsterHealth -= damage;
+            this.hitRecord.unshift({
+                isPlayer: true,
+                text: 'Player hit Monster for ' + damage
+            })
+            
+            if(this.checkWin()){
+                return
+            }
+            
         },
             
         heal: function () {
-            this.yourHealth = this.yourHealth - Math.floor(Math.random() * 5);
-            this.yourHealth = this.yourHealth + Math.floor((Math.random() * 5));
+            
+            this.monsterAttack();
+            
+            if(this.yourHealth <= 90) {
+                let heal = Math.floor(Math.random() * 10);
+                this.yourHealth += heal;
+                this.hitRecord.unshift({
+                    isPlayer: true,
+                    text: 'Player heals for ' + heal
+                })  
+            }            
         },
         
         calculateDamage: function(min, max) {
@@ -58,6 +88,16 @@ new Vue ({
                 } return true
             } return false;
             
+       },
+
+       monsterAttack: function() {
+        let damage = this.calculateDamage(3, 10);  
+        this.yourHealth -= damage;
+        this.hitRecord.unshift({
+            isPlayer: false,
+            text: 'Monster hits Player for ' + damage
+        })
+
        },
     },
     computed: {
