@@ -2,8 +2,10 @@
     <div class="component">
         <h3>You may view the User Details here</h3>
         <p>Many Details</p>
-        <p>User name: {{ myName }}</p>
-        <button v-on:click='resetName'>reset</button>
+        <p>User Name: {{ myName }}</p>
+        <p>User Age: {{ age }}</p>
+        <button v-on:click='resetName'>Reset</button>
+        <button v-on:click='resetFn'>Reset passed from parent</button>
     </div>
 </template>
 
@@ -16,7 +18,9 @@
                 type: String,
                 required: true,
                 //default: "Andy" - can be used 
-            }
+            },
+            resetFn: Function, //this is a function that has been passed from the parent and we can put in to a button (above)
+            age : Number
         },
         methods: {
             switchName () {
@@ -24,7 +28,7 @@
             },
             resetName: function() {
                 this.myName = 'Reset Andy';
-                this.$emit('NameWasReset', this.myName);
+                this.$emit('nameWasReset', this.myName);
             }
         }
     }
