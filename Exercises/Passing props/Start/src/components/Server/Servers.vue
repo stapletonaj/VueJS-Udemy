@@ -26,8 +26,7 @@
         },
         methods: {
             serverClicked(server){
-                this.$emit("serverDetails", server);
-                
+                this.$emit("serverDetailsChanged", server);
             }
         }
     }

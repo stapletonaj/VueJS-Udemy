@@ -3,10 +3,12 @@
         <app-header></app-header>
         <hr>
         <div class="row">
-            <servers></servers>
+            <servers
+             @serverDetailsChanged = "updateDetails($event)">
+             </servers>
             <app-server-details
-                :server = "server"
-                @serverDetailsChanged = "updateDetails()">
+                :id = "id"
+                :status = "status">
             </app-server-details>
         </div>
         <hr>
@@ -22,20 +24,26 @@
 
     export default {
         components: {
-            appHeader: Header,
-            servers: Servers,
+            "appHeader": Header,
+            "servers": Servers,
             'app-server-details': ServerDetails,
             'app-footer': Footer
         },
         data: function() {
-            return {server: {id: 0, status: "Normal"}}
-        },
+            return {
+                id: 0, 
+                status: "Normal"
+                }
+        }
+        ,
         methods:{
-            updateDetails(e) {
-                console.log(e);
-            }
+            updateDetails(event) {
+                this.id = event.id;
+                this.status = event.status;
+            }   
         }
     }
+    
 </script>
 
 <style>
