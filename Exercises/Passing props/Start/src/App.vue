@@ -3,13 +3,8 @@
         <app-header></app-header>
         <hr>
         <div class="row">
-            <servers
-             @serverDetailsChanged = "updateDetails($event)">
-             </servers>
-            <app-server-details
-                :id = "id"
-                :status = "status">
-            </app-server-details>
+            <servers></servers>
+            <app-server-details></app-server-details>
         </div>
         <hr>
         <app-footer></app-footer>
@@ -29,17 +24,13 @@
             'app-server-details': ServerDetails,
             'app-footer': Footer
         },
-        data: function() {
-            return {
-                id: 0, 
-                status: "Normal"
-                }
-        }
-        ,
         methods:{
             updateDetails(event) {
                 this.id = event.id;
                 this.status = event.status;
+            },
+            setServer() {
+                this.status = "Normal"
             }   
         }
     }

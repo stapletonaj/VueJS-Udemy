@@ -1,21 +1,31 @@
 <template>
     <div class="col-xs-12 col-sm-6">
-        <p>Server Details are currently not updated</p>
-        <p>Server id: {{ id }}</p>
-        <p>Current status: {{ status }}</p>
-        <button>Click to set to Normal</button>
-
-
+        <p v-if="!server">Select a server</p>        
+        <p v-else>Server id: {{ server.id }}, Current status: {{ server.status }}</p>
+        <button @click="resetStatus">Change to Normal</button>
     </div>
 
 </template>
 
 <script>
+import {serverBus} from "../../main.js";
+
 export default {
-    props: [
-        'id',
-        'status'
-    ]
+    data: function() {
+        return {
+            server: null
+        }
+    },
+    created() {
+        serverBus.$on("serverSelected", (server) => {
+            this.server = server;
+        })
+    },
+    methods: {
+        resetStatus(){
+            this.server.status = "Normal"
+        }
+    }
 }
 </script>
 

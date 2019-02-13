@@ -1,18 +1,16 @@
 <template>
     <div class="col-xs-12 col-sm-6">
         <ul class="list-group">
-            <li
-                    class="list-group-item"
-                    v-for="server in servers"
-                    @click = "serverClicked(server)">
-                Server #{{ server.id }},
-                Status = {{ server.status }}
-            </li>
+            <app-server
+            v-for="server in servers"
+            :server="server"></app-server>
         </ul>
     </div>
 </template>
 
 <script>
+import Server from "./Server.vue"
+
     export default {
         data: function() {
             return {
@@ -24,10 +22,8 @@
                 ]
             }
         },
-        methods: {
-            serverClicked(server){
-                this.$emit("serverDetailsChanged", server);
-            }
+        components: {
+            "app-server": Server 
         }
     }
 </script>
@@ -35,3 +31,4 @@
 <style>
 
 </style>
+
