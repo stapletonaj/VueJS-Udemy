@@ -4,8 +4,8 @@
             <div class="col-xs-12">
                <!-- We can use "slots" to pass data to a child component -->
                <app-quote>
-                   <h1>{{ quoteTitle }}</h1>
-                   <p>What a wonderful Quote</p>
+                   <h1 slot="title">{{ quoteTitle }}</h1>
+                   <p slot="content">What a wonderful Quote</p>
                </app-quote>
             </div>
         </div>
