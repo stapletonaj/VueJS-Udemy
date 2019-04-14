@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- This is a way to pass data from a prent using slots slot is a special name from vue and is reserved for this use-->
+        <!-- This is a way to pass data from a parent using slots slot is a special name from vue and is reserved for this use-->
         <!-- The styling of the child applies to the slot i.e put it here NOT in the parent-->
         <div class="title">
             <!-- if we want to pass multiple slots we can nuse the 'name' parameter to selectively display data -->

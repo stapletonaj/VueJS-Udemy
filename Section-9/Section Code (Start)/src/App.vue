@@ -9,6 +9,7 @@
                 <p>{{selectedComponent}}</p>
                <!--  is keyword is used to dynamically show components like below: -->
                 <keep-alive>
+                    <!-- component allow us to dynamically add components -->
                     <component :is="selectedComponent"></component>
                 </keep-alive>
                <!-- We can use "slots" to pass data to a child component -->
